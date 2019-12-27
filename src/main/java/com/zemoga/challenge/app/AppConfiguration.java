@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = {"com.zemoga.challenge.repository"})
+@ComponentScan(basePackages = {"com.zemoga.challenge"})
 public class AppConfiguration {
 
 }
