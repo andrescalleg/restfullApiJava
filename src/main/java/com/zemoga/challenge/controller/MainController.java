@@ -2,6 +2,7 @@ package com.zemoga.challenge.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.zemoga.challenge.model.Portfolio;
 import com.zemoga.challenge.repository.PortfolioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class MainController {
         if(tweets.size()<5){
            tweets.addAll(FILL);
         }
-        //Iterable<Portfolio> all = portfolioRepository.findAll();
+        Iterable<Portfolio> all = portfolioRepository.findAll();
         model.addAttribute("tweet1",tweets.get(0));
         model.addAttribute("tweet2",tweets.get(1));
         model.addAttribute("tweet3",tweets.get(2));

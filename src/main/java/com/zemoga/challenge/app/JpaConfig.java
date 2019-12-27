@@ -6,6 +6,7 @@ import java.util.Properties;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,13 +21,24 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class JpaConfig {
 	private static Logger logger = LoggerFactory.getLogger(JpaConfig.class);
 
+	@Value("jdbc:mysql://zemoga-test-db.crhpedy9xxto.us-east-1.rds.amazonaws.com:3306/")
+	private String url;
+
+	@Value("zemoga_test_db")
+	private String username;
+
+	@Value("Zem0ga.101")
+	private String password;
+
 	@Bean
 	public DataSource getMySQLDataSource() {
-		Properties props = new Properties();
-		MysqlDataSource mysqlDS = new MysqlDataSource();
-		mysqlDS.setURL("${spring.datasource.url}");
-		mysqlDS.setUser(props.getProperty("${spring.datasource.username}"));
-        mysqlDS.setPassword(props.getProperty("${spring.datasource.password}"));
+		MysqlDataSource mysqlDS = null;
+			Properties prop = new Properties();
+			mysqlDS = new MysqlDataSource();
+			mysqlDS.setURL(url);
+			mysqlDS.setUser(prop.getProperty(username));
+			mysqlDS.setPassword(prop.getProperty(password));
+
 		return mysqlDS;
 	}
 
